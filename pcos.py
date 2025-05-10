@@ -60,7 +60,7 @@ if uploaded_file is not None:
 
 
     st.markdown("---")
-    if st.button("🔍 Analyze Image"):
+    if st.button(" Analyze Image"):
         st.subheader("AI Diagnostic Result")
 
         # Handle empty name
