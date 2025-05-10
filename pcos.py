@@ -56,7 +56,8 @@ uploaded_file = st.file_uploader("Upload an Ultrasound Image", type=["jpg", "jpe
 
 if uploaded_file is not None:
     img = Image.open(uploaded_file).convert("RGB")
-    st.image(img, caption="Uploaded Image", use_column_width=True)
+    st.image(img, caption="Uploaded Ultrasound Image", use_container_width=True)
+
 
     st.markdown("---")
     if st.button("🔍 Analyze Image"):
