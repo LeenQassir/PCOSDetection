@@ -14,7 +14,7 @@ from PIL import Image
 st.set_page_config(page_title="PCOS Detection App", layout="centered", page_icon="🧠")
 
 # Title and subtitle
-st.title("🧠 PCOS Detection using AI")
+st.title("PCOS Detection using AI")
 st.markdown("Upload an image (e.g., ultrasound or scan) to check for possible PCOS indicators.")
 
 # Upload image
