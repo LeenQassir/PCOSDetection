@@ -136,7 +136,9 @@ if uploaded_file is not None and patient_id.strip() != "":
             st.markdown("---")
             st.subheader("📊 Previous Diagnostic Result Found:")
             st.write(f"**Last Diagnosis:** {prev_record[3]}")
-            st.write(f"**Confidence:** {prev_record[4]:.2f}%")
+            confidence_value = prev_record[4] if prev_record[4] is not None else 0.0
+            st.write(f"**Confidence:** {confidence_value:.2f}%")
+
             st.write(f"**Last Update:** {prev_record[5]}")
             if prev_record[3] != result:
                 st.warning("⚠️ Diagnosis has changed from the last test. Consider medical consultation.")
