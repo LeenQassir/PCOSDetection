@@ -5,11 +5,42 @@ import sqlite3
 from datetime import datetime
 from tensorflow.keras.models import load_model
 
-# --- Clear Cache to Avoid Old Loads ---
-st.cache_resource.clear()
-
 # --- Page Configuration ---
 st.set_page_config(page_title="PCOS Detection | AI Diagnostic", layout="centered", page_icon="🩺")
+
+# --- Custom CSS Styling ---
+st.markdown("""
+    <style>
+    html, body, .stApp, .main {
+        background-color: #f8c8dc !important;  /* Baby pink */
+        color: #2c3e50;
+    }
+
+    h1, h2, h3 {
+        color: #2c3e50 !important;
+        text-align: center !important;
+    }
+
+    .stButton button {
+        background-color: #4CAF50;
+        color: white;
+        font-size: 16px;
+        padding: 10px 24px;
+        border-radius: 8px;
+    }
+
+    .stButton button:hover {
+        background-color: #45a049;
+    }
+
+    .stTextInput>div>div>input,
+    .stNumberInput>div>div>input {
+        border-radius: 8px;
+    }
+
+    footer {visibility: hidden;}
+    </style>
+""", unsafe_allow_html=True)
 
 # --- Load the Trained Model ---
 @st.cache_resource
@@ -61,36 +92,9 @@ def preprocess_image(image_file):
     img_array = np.expand_dims(img_array, axis=0)  
     return img_array
 
-# --- Custom CSS Styling ---
+# --- Title and Description ---
 st.markdown("""
-    <style>
-    body, .stApp {
-        background-color: #f8c8dc;  /* Baby Pink */
-    }
-    h1, h2, h3 {
-        color: #2c3e50;
-        text-align: center;
-    }
-    .stButton button {
-        background-color: #4CAF50;
-        color: white;
-        font-size: 16px;
-        padding: 10px 24px;
-        border-radius: 8px;
-    }
-    .stButton button:hover {
-        background-color: #45a049;
-    }
-    .stTextInput>div>div>input, .stNumberInput>div>div>input {
-        border-radius: 8px;
-    }
-    footer {visibility: hidden;}
-    </style>
-""", unsafe_allow_html=True)
-
-# --- Custom Title and Description ---
-st.markdown("""
-    <h1 style='text-align: center; font-size: 48px; color: #2e7d32;'>AI MEETS PCOS</h1>
+    <h1 style='font-size: 48px;'>AI MEETS PCOS</h1>
     <br>
     <div style='text-align: center; font-size: 18px;'>
         Welcome to the <strong>AI-Powered PCOS Detection Platform</strong>.<br>
@@ -164,3 +168,4 @@ else:
 # --- Footer ---
 st.markdown("---")
 st.markdown("<div style='text-align: center;'>© 2025 PCOS Detection AI | For Medical Research Use Only.</div>", unsafe_allow_html=True)
+
