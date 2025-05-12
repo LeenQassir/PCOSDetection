@@ -136,10 +136,16 @@ if uploaded_file is not None and patient_id.strip() != "":
             st.markdown("---")
             st.subheader("📊 Previous Diagnostic Result Found:")
             st.write(f"**Last Diagnosis:** {prev_record[3]}")
-            confidence_value = prev_record[4] if prev_record[4] is not None else 0.0
-            st.write(f"**Confidence:** {confidence_value:.2f}%")
 
+            # Safely handle confidence value
+            try:
+                confidence_value = float(prev_record[4]) if prev_record[4] is not None else 0.0
+            except (ValueError, TypeError):
+                confidence_value = 0.0
+
+            st.write(f"**Confidence:** {confidence_value:.2f}%")
             st.write(f"**Last Update:** {prev_record[5]}")
+
             if prev_record[3] != result:
                 st.warning("⚠️ Diagnosis has changed from the last test. Consider medical consultation.")
             else:
@@ -151,4 +157,5 @@ else:
 # --- Footer ---
 st.markdown("---")
 st.markdown("<div style='text-align: center;'>© 2025 PCOS Detection AI | For Medical Research Use Only.</div>", unsafe_allow_html=True)
+
 
