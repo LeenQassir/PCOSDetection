@@ -65,7 +65,7 @@ def preprocess_image(image_file):
 st.markdown("""
     <style>
     body, .stApp {
-        background-color: #f0f2f6;
+        background-color: #f8c8dc;  /* Baby Pink */
     }
     h1, h2, h3 {
         color: #2c3e50;
@@ -164,4 +164,5 @@ else:
 # --- Footer ---
 st.markdown("---")
 st.markdown("<div style='text-align: center;'>© 2025 PCOS Detection AI | For Medical Research Use Only.</div>", unsafe_allow_html=True)
+
 
