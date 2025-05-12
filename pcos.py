@@ -102,7 +102,8 @@ with col1:
     patient_id = st.text_input("Enter Patient ID (Unique)", placeholder="e.g., P12345")
     patient_name = st.text_input("Enter Patient Name", placeholder="e.g., Jane Doe")
 with col2:
-    patient_age = st.number_input("Enter Patient Age", min_value=1, max_value=100, step=1)
+    patient_age = st.number_input("Enter Patient Age", min_value=18, max_value=45, step=1)
+
 
 # --- Upload Image ---
 uploaded_file = st.file_uploader("Upload an Ultrasound Image", type=["jpg", "jpeg", "png"])
