@@ -5,9 +5,11 @@ import sqlite3
 from datetime import datetime
 from tensorflow.keras.models import load_model
 
+# --- Clear Cache to Avoid Old Loads ---
 st.cache_resource.clear()
+
 # --- Page Configuration ---
-st.set_page_config(page_title="AI MEETS PCOS", layout="centered", page_icon="🩺")
+st.set_page_config(page_title="PCOS Detection | AI Diagnostic", layout="centered", page_icon="🩺")
 
 # --- Load the Trained Model ---
 @st.cache_resource
@@ -86,13 +88,10 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# --- Title and Description ---
+# --- Custom Title and Description ---
+st.markdown("<h1 style='text-align: center;'>AI MEETS PCOS</h1>", unsafe_allow_html=True)
 st.markdown("""
-    <h1 style='text-align: center; color: #2c3e50; font-size: 48px;'>AI MEETS PCOS</h1>
-""", unsafe_allow_html=True)
-
-st.markdown("""
-<div style='text-align: center;'>
+<div style='text-align: center; font-size: 18px;'>
 Welcome to the <strong>AI-Powered PCOS Detection Platform</strong>.<br>
 Upload an ultrasound image to perform an initial AI-based screening for Polycystic Ovary Syndrome (PCOS).<br>
 <em>Note: This tool is for preliminary analysis and does not replace professional medical advice.</em>
@@ -163,3 +162,4 @@ else:
 # --- Footer ---
 st.markdown("---")
 st.markdown("<div style='text-align: center;'>© 2025 PCOS Detection AI | For Medical Research Use Only.</div>", unsafe_allow_html=True)
+
