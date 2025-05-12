@@ -86,7 +86,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # --- Title and Description ---
-st.title("PCOS Detection using Artificial Intelligence and Machine Learning")
+st.title("AI MEETS PCOS")
 st.markdown("""
 <div style='text-align: center;'>
 Welcome to the <strong>AI-Powered PCOS Detection Platform</strong>.<br>
