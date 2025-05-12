@@ -4,7 +4,9 @@ import numpy as np
 import sqlite3
 from datetime import datetime
 from tensorflow.keras.models import load_model
+
 st.legacy_caching.clear_cache()
+
 # --- Page Configuration ---
 st.set_page_config(page_title="PCOS Detection | AI Diagnostic", layout="centered", page_icon="🩺")
 
@@ -94,13 +96,51 @@ def preprocess_image(image_file):
 
 # --- Title and Description ---
 st.markdown("""
-    <h1 style='font-size: 48px;'>AI MEETS PCOS</h1>
-    <br>
-    <div style='text-align: center; font-size: 18px;'>
-        Welcome to the <strong>AI-Powered PCOS Detection Platform</strong>.<br>
-        Upload an ultrasound image to perform an initial AI-based screening for 
-        <strong>Polycystic Ovary Syndrome (PCOS)</strong>.<br><br>
-        <em>Note: This tool is for preliminary analysis and does not replace professional medical advice.</em>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+    html, body, .stApp {
+        background-color: #e6f7ff;
+        font-family: 'Cairo', sans-serif;
+        direction: rtl;
+    }
+    .landing-container {
+        text-align: center;
+        padding: 40px;
+        background-color: #d4ecf7;
+        border-radius: 16px;
+        margin-bottom: 30px;
+        box-shadow: 0px 0px 15px rgba(0, 91, 153, 0.1);
+    }
+    h1 {
+        color: #005b99;
+        font-size: 48px;
+        margin-bottom: 10px;
+    }
+    h3 {
+        color: #333;
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    .note {
+        font-size: 18px;
+        color: #005b99;
+        background-color: #e6f2ff;
+        padding: 10px;
+        border-radius: 8px;
+        display: inline-block;
+        margin-top: 15px;
+    }
+    </style>
+    <div class='landing-container'>
+        <h1>AI MEETS PCOS</h1>
+        <h3>Welcome to the <strong>AI-Powered PCOS Detection Platform</strong></h3>
+        <div>
+            Upload an ultrasound image to perform an initial AI-based screening for 
+            <strong>Polycystic Ovary Syndrome (PCOS)</strong>.
+        </div>
+        <div class='note'>
+            <em>Note: This tool is for preliminary analysis and does not replace professional medical advice.</em>
+        </div>
     </div>
 """, unsafe_allow_html=True)
 
@@ -168,4 +208,5 @@ else:
 # --- Footer ---
 st.markdown("---")
 st.markdown("<div style='text-align: center;'>© 2025 PCOS Detection AI | For Medical Research Use Only.</div>", unsafe_allow_html=True)
+
 
