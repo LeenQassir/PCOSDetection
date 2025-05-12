@@ -89,13 +89,15 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # --- Custom Title and Description ---
-st.markdown("<h1 style='text-align: center;'>AI MEETS PCOS</h1>", unsafe_allow_html=True)
 st.markdown("""
-<div style='text-align: center; font-size: 18px;'>
-Welcome to the <strong>AI-Powered PCOS Detection Platform</strong>.<br>
-Upload an ultrasound image to perform an initial AI-based screening for Polycystic Ovary Syndrome (PCOS).<br>
-<em>Note: This tool is for preliminary analysis and does not replace professional medical advice.</em>
-</div>
+    <h1 style='text-align: center; font-size: 48px; color: #2e7d32;'>AI MEETS PCOS</h1>
+    <br>
+    <div style='text-align: center; font-size: 18px;'>
+        Welcome to the <strong>AI-Powered PCOS Detection Platform</strong>.<br>
+        Upload an ultrasound image to perform an initial AI-based screening for 
+        <strong>Polycystic Ovary Syndrome (PCOS)</strong>.<br><br>
+        <em>Note: This tool is for preliminary analysis and does not replace professional medical advice.</em>
+    </div>
 """, unsafe_allow_html=True)
 
 # --- Patient Information ---
