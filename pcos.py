@@ -5,6 +5,7 @@ import sqlite3
 from datetime import datetime
 from tensorflow.keras.models import load_model
 
+st.cache_resource.clear()
 # --- Page Configuration ---
 st.set_page_config(page_title="AI MEETS PCOS", layout="centered", page_icon="🩺")
 
