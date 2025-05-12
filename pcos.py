@@ -104,7 +104,6 @@ with col1:
 with col2:
     patient_age = st.number_input("Enter Patient Age", min_value=18, max_value=45, step=1)
 
-
 # --- Upload Image ---
 uploaded_file = st.file_uploader("Upload an Ultrasound Image", type=["jpg", "jpeg", "png"])
 
@@ -113,44 +112,47 @@ if uploaded_file is not None and patient_id.strip() != "":
     st.image(img, caption="Uploaded Ultrasound Image", use_container_width=True)
 
     st.markdown("---")
-    if st.button("Analyze Image"):
-        st.subheader("AI Diagnostic Result")
 
-        patient_name_display = patient_name.strip() if patient_name.strip() else "Patient"
-        processed_img = preprocess_image(img)
-        prediction = model.predict(processed_img)
-        result = "PCOS Detected" if prediction[0][0] > 0.5 else "No PCOS Detected"
-        confidence = prediction[0][0] * 100
+    if 18 <= patient_age <= 45:
+        if st.button("Analyze Image"):
+            st.subheader("AI Diagnostic Result")
 
-        # Fetch Previous Record
-        prev_record = get_patient_record(patient_id)
+            patient_name_display = patient_name.strip() if patient_name.strip() else "Patient"
+            processed_img = preprocess_image(img)
+            prediction = model.predict(processed_img)
+            result = "PCOS Detected" if prediction[0][0] > 0.5 else "No PCOS Detected"
+            confidence = prediction[0][0] * 100
 
-        # Update Database
-        update_patient_record(patient_id, patient_name, patient_age, result, confidence)
+            # Fetch Previous Record
+            prev_record = get_patient_record(patient_id)
 
-        # Display Result
-        st.success(f"**{result}** for **{patient_name_display}**, Age: **{int(patient_age)}**.")
-        st.info(f"*Model Confidence: {confidence:.2f}%*")
+            # Update Database
+            update_patient_record(patient_id, patient_name, patient_age, result, confidence)
 
-        # Show Previous Diagnosis if Exists
-        if prev_record:
-            st.markdown("---")
-            st.subheader("📊 Previous Diagnostic Result Found:")
-            st.write(f"**Last Diagnosis:** {prev_record[3]}")
+            # Display Result
+            st.success(f"**{result}** for **{patient_name_display}**, Age: **{int(patient_age)}**.")
+            st.info(f"*Model Confidence: {confidence:.2f}%*")
 
-            # Safely handle confidence value
-            try:
-                confidence_value = float(prev_record[4]) if prev_record[4] is not None else 0.0
-            except (ValueError, TypeError):
-                confidence_value = 0.0
+            # Show Previous Diagnosis if Exists
+            if prev_record:
+                st.markdown("---")
+                st.subheader("📊 Previous Diagnostic Result Found:")
+                st.write(f"**Last Diagnosis:** {prev_record[3]}")
 
-            st.write(f"**Confidence:** {confidence_value:.2f}%")
-            st.write(f"**Last Update:** {prev_record[5]}")
+                try:
+                    confidence_value = float(prev_record[4]) if prev_record[4] is not None else 0.0
+                except (ValueError, TypeError):
+                    confidence_value = 0.0
 
-            if prev_record[3] != result:
-                st.warning("⚠️ Diagnosis has changed from the last test. Consider medical consultation.")
-            else:
-                st.success("✅ Diagnosis remains consistent with previous test.")
+                st.write(f"**Confidence:** {confidence_value:.2f}%")
+                st.write(f"**Last Update:** {prev_record[5]}")
+
+                if prev_record[3] != result:
+                    st.warning("⚠️ Diagnosis has changed from the last test. Consider medical consultation.")
+                else:
+                    st.success("✅ Diagnosis remains consistent with previous test.")
+    else:
+        st.warning("⚠️ Age must be between 18 and 45 to proceed with the analysis.")
 else:
     if uploaded_file is not None and patient_id.strip() == "":
         st.warning("⚠️ Please provide a unique Patient ID to proceed with the analysis.")
@@ -158,5 +160,3 @@ else:
 # --- Footer ---
 st.markdown("---")
 st.markdown("<div style='text-align: center;'>© 2025 PCOS Detection AI | For Medical Research Use Only.</div>", unsafe_allow_html=True)
-
-
