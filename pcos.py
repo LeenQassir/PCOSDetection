@@ -4,7 +4,7 @@ import numpy as np
 import sqlite3
 from datetime import datetime
 from tensorflow.keras.models import load_model
-
+st.legacy_caching.clear_cache()
 # --- Page Configuration ---
 st.set_page_config(page_title="PCOS Detection | AI Diagnostic", layout="centered", page_icon="🩺")
 
