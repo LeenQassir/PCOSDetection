@@ -8,7 +8,8 @@ from tensorflow.keras.models import load_model
 st.legacy_caching.clear_cache()
 
 # --- Page Configuration ---
-st.set_page_config(page_title="PCOS Detection | AI Diagnostic", layout="centered", page_icon="🩺")
+st.set_page_config(page_title="AI MEETS PCOS | AI Diagnostic", layout="centered", page_icon="🩺")
+
 
 # --- Custom CSS Styling ---
 st.markdown("""
