@@ -4,12 +4,11 @@ import numpy as np
 import sqlite3
 from datetime import datetime
 from tensorflow.keras.models import load_model
-streamlit cache clear
+
 st.legacy_caching.clear_cache()
 
 # --- Page Configuration ---
 st.set_page_config(page_title="AI MEETS PCOS | AI Diagnostic", layout="centered", page_icon="🩺")
-
 
 # --- Custom CSS Styling ---
 st.markdown("""
@@ -95,7 +94,7 @@ def preprocess_image(image_file):
     img_array = np.expand_dims(img_array, axis=0)  
     return img_array
 
-# --- Title and Description ---
+# --- Landing Title and Description ---
 st.markdown("""
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -159,7 +158,7 @@ if patient_id and patient_name:
     prev_record = get_patient_record(patient_id)
 
 if prev_record and prev_record[1].strip().lower() != patient_name.lower():
-    st.warning(f"⚠️ Patient ID **{patient_id}** is already assigned to **{prev_record[1]}**. Name mismatch detected! Analysis is blocked.")
+    st.warning(f"⚠️ Patient ID {patient_id} is already assigned to {prev_record[1]}. Name mismatch detected! Analysis is blocked.")
 else:
     uploaded_file = st.file_uploader("Upload an Ultrasound Image", type=["jpg", "jpeg", "png"])
 
@@ -180,21 +179,21 @@ else:
 
                 update_patient_record(patient_id, patient_name, patient_age, result, confidence)
 
-                st.success(f"**{result}** for **{patient_name}**, Age: **{int(patient_age)}**.")
-                st.info(f"*Model Confidence: {confidence:.2f}%*")
+                st.success(f"{result} for {patient_name}, Age: *{int(patient_age)}*.")
+                st.info(f"Model Confidence: {confidence:.2f}%")
 
                 if prev_record:
                     st.markdown("---")
                     st.subheader("📊 Previous Diagnostic Result Found:")
-                    st.write(f"**Last Diagnosis:** {prev_record[3]}")
+                    st.write(f"Last Diagnosis: {prev_record[3]}")
 
                     try:
                         confidence_value = float(prev_record[4]) if prev_record[4] is not None else 0.0
                     except (ValueError, TypeError):
                         confidence_value = 0.0
 
-                    st.write(f"**Confidence:** {confidence_value:.2f}%")
-                    st.write(f"**Last Update:** {prev_record[5]}")
+                    st.write(f"Confidence: {confidence_value:.2f}%")
+                    st.write(f"Last Update: {prev_record[5]}")
 
                     if prev_record[3] != result:
                         st.warning("⚠️ Diagnosis has changed from the last test. Consider medical consultation.")
